@@ -1,31 +1,35 @@
 // @ts-check
 
-import eslint from "@eslint/js";
-import tsPlugin from "@typescript-eslint/eslint-plugin";
-import tsParser from "@typescript-eslint/parser";
-import globals from "globals";
+import eslint from '@eslint/js'
+import tsPlugin from '@typescript-eslint/eslint-plugin'
+import tsParser from '@typescript-eslint/parser'
+import globals from 'globals'
 
 export default [
-  eslint.configs.recommended,
-  {
-    files: ["src/**/*.{ts,tsx}"],
-    languageOptions: {
-      parser: tsParser,
-      globals: { ...globals.node },
-      parserOptions: {
-        sourceType: "module",
-        ecmaVersion: "latest",
-      },
+    eslint.configs.recommended,
+    {
+        files: ['src/**/*.{ts,tsx}'],
+        languageOptions: {
+            parser: tsParser,
+            globals: { ...globals.node },
+            parserOptions: {
+                sourceType: 'module',
+                ecmaVersion: 'latest',
+            },
+        },
+        plugins: {
+            '@typescript-eslint': tsPlugin,
+        },
+        rules: {
+            ...tsPlugin.configs.recommended.rules,
+        },
     },
-    plugins: {
-      "@typescript-eslint": tsPlugin,
+    {
+        ignores: [
+            'node_modules',
+            'dist',
+            'coverage',
+            './commitlint.config.cjs',
+        ],
     },
-    rules: {
-      ...tsPlugin.configs.recommended.rules,
-    },
-  },
-  {
-    ignores: ['node_modules', 'build', "coverage","./commitlint.config.cjs"],
-  },
-  
-];
+]

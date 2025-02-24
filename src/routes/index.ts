@@ -1,7 +1,7 @@
-import { Router } from "express";
+import { Router } from 'express'
 
-const router = Router();
+const router = Router()
 
 //[Routes]
 
-export default router;
+export default router
