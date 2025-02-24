@@ -25,7 +25,7 @@ export default [
     },
   },
   {
-    ignores: ["./commitlint.config.cjs"],
+    ignores: ['node_modules', 'build', "coverage","./commitlint.config.cjs"],
   },
   
 ];
