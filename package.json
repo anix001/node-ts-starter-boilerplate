@@ -13,7 +13,7 @@
         "lint": "eslint .",
         "format": "prettier . --write"
     },
-    "author": "",
+    "author": "anix001",
     "license": "ISC",
     "dependencies": {
         "cors": "^2.8.5",
