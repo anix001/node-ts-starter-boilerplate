@@ -1,3 +1,3 @@
-import { HttpError } from './interface'
+import { HttpError } from './interface.js'
 
 export { HttpError }

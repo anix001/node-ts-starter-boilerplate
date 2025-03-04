@@ -1,4 +1,4 @@
-import corsOptions from './cors.middleware'
-import { errorHandler } from './error.middleware'
+import corsOptions from './cors.middleware.js'
+import { errorHandler } from './error.middleware.js'
 
 export { corsOptions, errorHandler }

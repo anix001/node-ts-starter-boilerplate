@@ -30,6 +30,7 @@ export default [
             'dist',
             'coverage',
             './commitlint.config.cjs',
+            'src/middleware/error.middleware.ts',
         ],
     },
 ]

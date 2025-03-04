@@ -1,18 +1,23 @@
 import fs from 'fs'
 import path from 'path'
+import { fileURLToPath } from 'url'
 
-//[Logger Types]
+// Convert `import.meta.url` to a directory path
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
+
+// [Logger Types]
 type LogType = 'info' | 'error'
 
-//[Logger Class]
+// [Logger Class]
 class Logger {
     private logFilePath: string
 
-    //[constructor function]
+    // [Constructor function]
     constructor(logFileName: string = 'application.log') {
-        this.logFilePath = path.join(__dirname, '../logs', logFileName) //[path of the log file]
+        this.logFilePath = path.join(__dirname, '../logs', logFileName) // [Path of the log file]
 
-        //[ If directory does not exist, we need to create the directory]
+        // [If directory does not exist, create it]
         if (!fs.existsSync(path.dirname(this.logFilePath))) {
             fs.mkdirSync(path.dirname(this.logFilePath), { recursive: true })
         }
@@ -40,4 +45,5 @@ class Logger {
     }
 }
 
+// Export an instance of the Logger class
 export default new Logger()

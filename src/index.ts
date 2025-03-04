@@ -1,9 +1,9 @@
 import express, { Express, NextFunction, Request, Response } from 'express'
 import cors from 'cors'
 
-import { config, Logger } from './utils'
-import { corsOptions, errorHandler } from './middleware'
-import appRoutes from './routes'
+import { config, Logger } from './utils/index.js'
+import { corsOptions, errorHandler } from './middleware/index.js'
+import appRoutes from './routes/index.js'
 
 const app: Express = express()
 const port = config.port

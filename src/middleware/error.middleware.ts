@@ -1,11 +1,12 @@
-import { Request, Response } from 'express'
-import { HttpError } from '../interface'
-import { Logger } from '../utils'
+import { NextFunction, Request, Response } from 'express'
+import { HttpError } from '../interface/index.js'
+import { Logger } from '../utils/index.js'
 
 export const errorHandler = (
     err: HttpError,
     req: Request,
-    res: Response
+    res: Response,
+    next: NextFunction
 ): void => {
     const status = err.status || 500
     const message = err.message || 'Internal Server Error'
