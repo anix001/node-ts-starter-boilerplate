@@ -1,5 +1,7 @@
 import express, { Express, NextFunction, Request, Response } from 'express'
 import cors from 'cors'
+import helmet from 'helmet'
+import rateLimit from 'express-rate-limit'
 
 import { config, Logger } from './utils/index.js'
 import { corsOptions, errorHandler } from './middleware/index.js'
@@ -13,6 +15,15 @@ app.use(express.json())
 //[for cors]
 app.use(cors(corsOptions))
 //[for logging API Request]
+//[Set Security Headers (Prevents XSS)]
+app.use(helmet())
+//[ Rate Limiting (Prevents brute-force attacks)]
+const limiter = rateLimit({
+    windowMs: 60 * 100, // 1 minutes
+    max: 100, // Limit each IP to 100 requests per window
+    message: 'Too many requests from this IP, please try again later',
+})
+app.use(limiter)
 app.use((req: Request, res: Response, next: NextFunction) => {
     Logger.info(`Incoming Request: ${req.method} ${req.url}`)
     next()
