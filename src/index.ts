@@ -14,7 +14,6 @@ const port = config.port
 app.use(express.json())
 //[for cors]
 app.use(cors(corsOptions))
-//[for logging API Request]
 //[Set Security Headers (Prevents XSS)]
 app.use(helmet())
 //[ Rate Limiting (Prevents brute-force attacks)]
@@ -24,6 +23,7 @@ const limiter = rateLimit({
     message: 'Too many requests from this IP, please try again later',
 })
 app.use(limiter)
+//[for logging API Request]
 app.use((req: Request, res: Response, next: NextFunction) => {
     Logger.info(`Incoming Request: ${req.method} ${req.url}`)
     next()
